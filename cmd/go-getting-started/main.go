@@ -52,11 +52,13 @@ func main() {
 
 		for _, result := range received.Results {
 			content := result.Content()
+
 			if content != nil && content.IsMessage && content.ContentType == linebot.ContentTypeText {
 				text, err := content.TextContent()
 				if err != nil {
 					fmt.Print("invalid text content")
 					fmt.Println(err)
+					return
 				}
 				fmt.Println(text.Text)
 				newStr := ""
@@ -67,6 +69,26 @@ func main() {
 				res, err := bot.SendText([]string{content.From}, newStr)
 				if err != nil {
 					fmt.Println(res)
+					fmt.Println(err)
+				}
+			}
+
+			if content != nil && content.IsOperation && content.OpType == linebot.OpTypeAddedAsFriend {
+				op, err := content.OperationContent()
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+				from := op.Params[0]
+
+				prof, err := bot.GetUserProfile([]string{from})
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+				g := prof.Contacts[0].DisplayName + "、俺゛と゛勝゛負゛し゛ろ゛お゛ぉ゛ぉ゛ぉ゛ぉ゛ぉ゛！゛！゛"
+				_, err = bot.SendText([]string{from}, g)
+				if err != nil {
 					fmt.Println(err)
 				}
 			}
