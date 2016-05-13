@@ -35,6 +35,7 @@ func main() {
 
 		bot, err := linebot.NewClient(123456789, "SECRET", "MID", linebot.WithHTTPClient(client))
 		if err != nil {
+			fmt.Print("bot init error")
 			fmt.Println(err)
 			return
 		}
@@ -42,8 +43,10 @@ func main() {
 		received, err := bot.ParseRequest(c.Request)
 		if err != nil {
 			if err == linebot.ErrInvalidSignature {
+				fmt.Print("invalid sign")
 				fmt.Println(err)
 			}
+			fmt.Print("unknown error")
 			return
 		}
 
@@ -51,10 +54,15 @@ func main() {
 			content := result.Content()
 			if content != nil && content.IsMessage && content.ContentType == linebot.ContentTypeText {
 				text, err := content.TextContent()
+				if err != nil {
+					fmt.Print("invalid text content")
+					fmt.Println(err)
+				}
 				fmt.Println(text.Text)
 				res, err := bot.SendText([]string{content.From}, "OK "+text.Text)
 				if err != nil {
 					fmt.Println(res)
+					fmt.Println(err)
 				}
 			}
 		}
