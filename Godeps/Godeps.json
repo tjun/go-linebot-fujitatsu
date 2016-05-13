@@ -1,6 +1,7 @@
 {
-	"ImportPath": "github.com/heroku/go-getting-started",
+	"ImportPath": "github.com/tjun/go-linebot-fujitatsu",
 	"GoVersion": "go1.6",
+	"GodepVersion": "v66",
 	"Packages": [
 		"./..."
 	],
@@ -19,6 +20,10 @@
 			"ImportPath": "github.com/gin-gonic/gin/render",
 			"Comment": "v1.0rc1-110-g4cc2de6",
 			"Rev": "4cc2de6207f4128624cbdd16be30f64966c67c08"
+		},
+		{
+			"ImportPath": "github.com/line/line-bot-sdk-go/linebot",
+			"Rev": "f3e3a38aee47ca24ded221ce4be6d9363e3d32e1"
 		},
 		{
 			"ImportPath": "github.com/manucorporat/sse",
