@@ -59,7 +59,12 @@ func main() {
 					fmt.Println(err)
 				}
 				fmt.Println(text.Text)
-				res, err := bot.SendText([]string{content.From}, "OK "+text.Text)
+				newStr := ""
+				for _, c := range text.Text {
+					newStr += string(c)
+					newStr += "゛"
+				}
+				res, err := bot.SendText([]string{content.From}, newStr)
 				if err != nil {
 					fmt.Println(res)
 					fmt.Println(err)
