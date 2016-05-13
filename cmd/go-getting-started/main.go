@@ -51,6 +51,7 @@ func main() {
 			content := result.Content()
 			if content != nil && content.IsMessage && content.ContentType == linebot.ContentTypeText {
 				text, err := content.TextContent()
+				fmt.Println(text.Text)
 				res, err := bot.SendText([]string{content.From}, "OK "+text.Text)
 				if err != nil {
 					fmt.Println(res)
