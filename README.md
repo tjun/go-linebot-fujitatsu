@@ -1,2 +1,4 @@
 # go-linebot-fujitatsu
-line bot
+line bot written in GO.
+
+![](https://raw.githubusercontent.com/tjun/go-linebot-fujitatsu/master/screenshot.jpg)
